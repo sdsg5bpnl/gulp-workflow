@@ -83,6 +83,12 @@ function minifyTS() {
     .pipe(browserSync.stream());
 };
 
+function copyStatic() {
+  return str('src/static/**/*')
+    .pipe(dest('dist/static'))
+    .pipe(browserSync.stream());
+};
+
 function serve() {
   browserSync.init({
     server: {
@@ -94,7 +100,8 @@ function serve() {
   watch('src/**/*.scss', series(sass));
   watch('src/**/*.js', series(javascript));
   watch('src/**/*.ts', series(typescript));
+  watch('src/static/**/*', series(copyStatic));
 }
 
-exports.default = series(HTML, sass, javascript, typescript, serve);
-exports.build = series(minifyHTML, minifySass, minifyJS, minifyTS);
+exports.default = series(HTML, sass, javascript, typescript, copyStatic, serve);
+exports.build = series(minifyHTML, minifySass, minifyJS, minifyTS, copyStatic);
