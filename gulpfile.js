@@ -84,7 +84,7 @@ function minifyTS() {
 };
 
 function copyStatic() {
-  return str('src/static/**/*')
+  return src('src/static/**/*')
     .pipe(dest('dist/static'))
     .pipe(browserSync.stream());
 };
