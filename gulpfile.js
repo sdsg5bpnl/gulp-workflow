@@ -1,6 +1,7 @@
 const { series, src, dest, watch } = require('gulp');
 const browserSync = require('browser-sync').create();
 const htmlmin = require('gulp-htmlmin');
+const pug = require('gulp-pug');
 const sourcemaps = require('gulp-sourcemaps');
 const dartSass = require('gulp-dart-sass');
 const postcss = require('gulp-postcss');
@@ -18,7 +19,28 @@ function HTML() {
 
 function minifyHTML() {
   return src('src/**/*.html')
-    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true
+    }))
+    .pipe(dest('dist'))
+    .pipe(browserSync.stream());
+}
+
+function pugToHTML() {
+  return src('src/**/*.pug')
+    .pipe(pug({
+      pretty: true
+    }))
+    .pipe(dest('dist'))
+    .pipe(browserSync.stream());
+}
+
+function pugToMinifyHTML() {
+  return src('src/**/*.pug')
+    .pipe(pug({
+
+    }))
     .pipe(dest('dist'))
     .pipe(browserSync.stream());
 }
@@ -97,11 +119,12 @@ function serve() {
   });
 
   watch('src/**/*.html', series(HTML));
+  watch('src/**/*.pug', series(pugToHTML));
   watch('src/**/*.scss', series(sass));
   watch('src/**/*.js', series(javascript));
   watch('src/**/*.ts', series(typescript));
   watch('src/static/**/*', series(copyStatic));
 }
 
-exports.default = series(HTML, sass, javascript, typescript, copyStatic, serve);
-exports.build = series(minifyHTML, minifySass, minifyJS, minifyTS, copyStatic);
+exports.default = series(HTML, pugToHTML, sass, javascript, typescript, copyStatic, serve);
+exports.build = series(minifyHTML, pugToMinifyHTML, minifySass, minifyJS, minifyTS, copyStatic);
