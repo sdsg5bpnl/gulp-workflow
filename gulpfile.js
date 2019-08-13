@@ -48,7 +48,10 @@ function pugToMinifyHTML() {
 function sass() {
   return src('src/**/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(dartSass().on('error', dartSass.logError))
+    .pipe(dartSass({
+      includePaths: ['./node_modules/bootstrap/scss']
+    })
+      .on('error', dartSass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(sourcemaps.write('.'))
     .pipe(dest('dist'))
@@ -58,7 +61,11 @@ function sass() {
 function minifySass() {
   return src('src/**/*.scss')
     .pipe(sourcemaps.init())
-    .pipe(dartSass({ outputStyle: 'compressed' }).on('error', dartSass.logError))
+    .pipe(dartSass({
+      outputStyle: 'compressed',
+      includePaths: ['./node_modules/bootstrap/scss']
+    })
+      .on('error', dartSass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(sourcemaps.write('.'))
     .pipe(dest('dist'))
