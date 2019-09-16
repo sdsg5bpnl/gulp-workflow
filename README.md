@@ -12,6 +12,7 @@
 - scripts 則是支援 JavaScript 與 TypeScript 兩者。
 
 使用 Gulp 前，務必先輸入 `npm install -g gulp-cli` 在全域安裝 Gulp-cli 才能正常使用。
+
 在開始開發前，務必先輸入 `npm install` 指令來載入 node_modules。
 
 ### npm 指令：
