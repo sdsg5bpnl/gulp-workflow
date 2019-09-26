@@ -7,13 +7,14 @@
 - dist 為輸出的資料夾
 
 ### 支援語法：
-- template 支援 HTML 及 Pug
-- styles 預設使用 SASS
-- scripts 則是支援 JavaScript 與 TypeScript 兩者。
+- template 支援 HTML、Pug 及 EJS
+- styles 預設使用 SCSS
+- scripts 支援 JavaScript 與 TypeScript
 
-使用 Gulp 前，務必先輸入 `npm install -g gulp-cli` 在全域安裝 Gulp-cli 才能正常使用。
-
-在開始開發前，務必先輸入 `npm install` 指令來載入 node_modules。
+### 注意事項
+- 使用 Gulp 前，務必先輸入 `npm install -g gulp-cli` 在全域安裝 Gulp-cli 才能正常使用。
+- 在開始開發前，務必先輸入 `npm install` 指令來載入 node_modules。
+- EJS 若有使用**模板**功能，遇到錯誤（如：路徑或檔名不正確）無法 Hot Reload，會直接報錯並中斷 Gulp，需要手動重啟。
 
 ### npm 指令：
 - `npm run clean`：清除 dist 資料夾
