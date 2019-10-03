@@ -21,6 +21,7 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
     "gulp-dart-sass": "^0.9.1",
     "gulp-ejs": "^4.1.2",
     "gulp-htmlmin": "^5.0.1",

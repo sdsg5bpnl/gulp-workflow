@@ -12,6 +12,7 @@ const dartSass = require('gulp-dart-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 const ts = require('gulp-typescript');
 const tsProject = ts.createProject('tsconfig.json');
 const uglify = require('gulp-uglify');
@@ -102,6 +103,7 @@ function copyJS() {
         presets: ['@babel/env'],
       }),
     )
+    .pipe(concat('vendor.js'))
     .pipe(gulpif(options.env === 'production', uglify()))
     .pipe(sourcemaps.write('.'))
     .pipe(dest('dist/scripts'))
