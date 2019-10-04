@@ -140,8 +140,8 @@ function serve() {
     },
   });
   watch('src/*.html', series(copyHTML));
-  watch('src/*.pug', series(pugToHTML));
-  watch('src/*.ejs', series(ejsToHTML));
+  watch('src/**/*.pug', series(pugToHTML));
+  watch('src/**/*.ejs', series(ejsToHTML));
   watch('src/styles/**/*.css', series(copyCSS));
   watch('src/styles/**/*.scss', series(scssToCSS));
   watch('src/scripts/**/*.js', series(copyJS));
