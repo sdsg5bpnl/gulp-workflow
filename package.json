@@ -11,16 +11,17 @@
   "license": "ISC",
   "browserslist": [
     "> 1%",
-    "last 2 versions"
+    "last 2 versions",
+    "ie > 8"
   ],
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "autoprefixer": "^9.7.1",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "autoprefixer": "^9.7.5",
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "gulp-clean-css": "^4.2.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-dart-sass": "^0.9.1",
     "gulp-ejs": "^4.1.2",
@@ -33,10 +34,10 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-typescript": "^5.0.1",
     "gulp-uglify": "^3.0.2",
-    "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
+    "minimist": "^1.2.5",
+    "mkdirp": "^0.5.5",
     "rimraf": "^2.7.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.8.3"
   },
   "dependencies": {},
   "description": ""

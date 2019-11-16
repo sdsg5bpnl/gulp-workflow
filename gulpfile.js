@@ -20,7 +20,7 @@ const imagemin = require('gulp-imagemin');
 
 const envOptions = {
   string: 'env',
-  default: { env: 'develop' },
+  default: { env: 'develop' }
 };
 const options = parseArgs(process.argv.slice(2), envOptions);
 
@@ -29,8 +29,8 @@ function copyHTML() {
     .pipe(
       gulpif(
         options.env === 'production',
-        htmlmin({ collapseWhitespace: true, removeComments: true }),
-      ),
+        htmlmin({ collapseWhitespace: true, removeComments: true })
+      )
     )
     .pipe(dest('dist'))
     .pipe(browserSync.stream());
@@ -50,8 +50,8 @@ function ejsToHTML() {
     .pipe(
       gulpif(
         options.env === 'production',
-        htmlmin({ collapseWhitespace: true, removeComments: true }),
-      ),
+        htmlmin({ collapseWhitespace: true, removeComments: true })
+      )
     )
     .pipe(dest('dist'))
     .pipe(browserSync.stream());
@@ -66,8 +66,8 @@ function copyCSS() {
         cleanCSS({ compatibility: 'ie8', debug: true }, details => {
           console.log(`${details.name}: ${details.stats.originalSize}`);
           console.log(`${details.name}: ${details.stats.minifiedSize}`);
-        }),
-      ),
+        })
+      )
     )
     .pipe(gulpif(options.env === 'production', sourcemaps.write('.')))
     .pipe(dest('dist/styles'))
@@ -82,12 +82,12 @@ function scssToCSS() {
         options.env === 'production',
         dartSass({
           outputStyle: 'compressed',
-          includePaths: ['./node_modules/bootstrap/scss'],
+          includePaths: ['./node_modules/bootstrap/scss']
         }).on('error', dartSass.logError),
         dartSass({
-          includePaths: ['./node_modules/bootstrap/scss'],
-        }).on('error', dartSass.logError),
-      ),
+          includePaths: ['./node_modules/bootstrap/scss']
+        }).on('error', dartSass.logError)
+      )
     )
     .pipe(postcss([autoprefixer()]))
     .pipe(sourcemaps.write('.'))
@@ -100,8 +100,8 @@ function copyJS() {
     .pipe(sourcemaps.init())
     .pipe(
       babel({
-        presets: ['@babel/env'],
-      }),
+        presets: ['@babel/env']
+      })
     )
     .pipe(concat('vendor.js'))
     .pipe(gulpif(options.env === 'production', uglify()))
@@ -136,8 +136,9 @@ function copyStatic() {
 function serve() {
   browserSync.init({
     server: {
-      baseDir: './dist',
+      baseDir: './dist'
     },
+    browser: 'chrome'
   });
   watch('src/*.html', series(copyHTML));
   watch('src/**/*.pug', series(pugToHTML));
@@ -160,7 +161,7 @@ exports.default = series(
   tsToJS,
   copyImages,
   copyStatic,
-  serve,
+  serve
 );
 
 exports.build = series(
@@ -172,5 +173,5 @@ exports.build = series(
   copyJS,
   tsToJS,
   copyImages,
-  copyStatic,
+  copyStatic
 );
